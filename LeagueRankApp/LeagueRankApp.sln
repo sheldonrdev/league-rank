@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueRankApp", "LeagueRankApp\LeagueRankApp.csproj", "{48B540BF-AF78-4D59-BACB-69A36BE2FDD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueRankApp.Tests", "LeagueRankApp.Tests\LeagueRankApp.Tests.csproj", "{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48B540BF-AF78-4D59-BACB-69A36BE2FDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B540BF-AF78-4D59-BACB-69A36BE2FDD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B540BF-AF78-4D59-BACB-69A36BE2FDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B540BF-AF78-4D59-BACB-69A36BE2FDD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
