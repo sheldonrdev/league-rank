@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueRankApp", "LeagueRank
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueRankApp.Tests", "LeagueRankApp.Tests\LeagueRankApp.Tests.csproj", "{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueRankApp.Models", "LeagueRankApp.Models\LeagueRankApp.Models.csproj", "{9388F89D-5D96-41C1-9CFD-1D578E699B79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76E57AC6-01A9-4FAE-81CF-D9BAF0C7DCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9388F89D-5D96-41C1-9CFD-1D578E699B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9388F89D-5D96-41C1-9CFD-1D578E699B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9388F89D-5D96-41C1-9CFD-1D578E699B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9388F89D-5D96-41C1-9CFD-1D578E699B79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
