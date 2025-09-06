@@ -1,4 +1,4 @@
-﻿namespace LeagueRankApp.Models;
+﻿namespace LeagueRankApp.Models.Incoming;
 
 /// <summary>
 /// Represents each team and the respective score at the end of the match.

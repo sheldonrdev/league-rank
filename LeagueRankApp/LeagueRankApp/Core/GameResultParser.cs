@@ -1,7 +1,6 @@
-using System.Text.RegularExpressions;
-using LeagueRankApp.Models;
+using LeagueRankApp.Models.Incoming;
 
-namespace LeagueRankApp;
+namespace LeagueRankApp.Core;
 
 public class GameResultParser
 {

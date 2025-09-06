@@ -1,4 +1,6 @@
-﻿namespace LeagueRankApp.Tests;
+﻿using LeagueRankApp.Core;
+
+namespace LeagueRankApp.Tests;
 
 public class ParserTests
 {
