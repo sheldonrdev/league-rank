@@ -2,7 +2,7 @@ using LeagueRankApp.Models.Incoming;
 
 namespace LeagueRankApp.Core;
 
-public class GameResultParser
+public class GameResultParser : IGameResultParser
 {
     public GameResult ParseGameResult(string line)
     {
