@@ -91,4 +91,36 @@ public class LeagueTableTests
         Assert.Equal("Snakes", rankedTeams[3].Team.Name);
         Assert.Equal(0, rankedTeams[3].Team.Points);
     }
+    
+    [Fact]
+    public void GetRankedTeams_SortsTeamsWithSamePoints_HaveSameRank()
+    {
+        // Arrange
+        var league = new LeagueTable();
+        
+        // Act
+        league.AddGameResult("Lions 1, Snakes 1");
+        league.AddGameResult("Tigers 1, Bears 1");
+        league.AddGameResult("Eagles 3, Wolves 0");
+        var rankedTeams = league.GetRankedTeams();
+        
+        // Assert
+        Assert.Equal(6, rankedTeams.Count);
+        Assert.Equal("Eagles", rankedTeams[0].Team.Name);
+        Assert.Equal(1, rankedTeams[0].Rank);
+        
+        // Teams with 1 pt should have rank = 2 and be sorted ASC by name
+        Assert.Equal("Bears", rankedTeams[1].Team.Name);
+        Assert.Equal(2, rankedTeams[1].Rank);
+        Assert.Equal("Lions", rankedTeams[2].Team.Name);
+        Assert.Equal(2, rankedTeams[2].Rank);
+        Assert.Equal("Snakes", rankedTeams[3].Team.Name);
+        Assert.Equal(2, rankedTeams[3].Rank);
+        Assert.Equal("Tigers", rankedTeams[4].Team.Name);
+        Assert.Equal(2, rankedTeams[4].Rank);
+        
+        // Team with 0 pts should have rank = 6
+        Assert.Equal("Wolves", rankedTeams[5].Team.Name);
+        Assert.Equal(6, rankedTeams[5].Rank);
+    }
 }
