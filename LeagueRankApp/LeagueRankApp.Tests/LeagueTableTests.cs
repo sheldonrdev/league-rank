@@ -49,4 +49,46 @@ public class LeagueTableTests
         Assert.Equal(3, teams["Snakes"].Points);
     }
 
+    [Fact]
+    public void GetRankedTeams_SortsResultsByPointsDescThenNamesAsc_ReturnsSortedByPoints()
+    {
+        // Arrange
+        var league = new LeagueTable();
+        
+        // Act
+        league.AddGameResult("Tigers 3, Snakes 1");
+        league.AddGameResult("Lions 3, Bears 1");
+        var rankedTeams = league.GetRankedTeams();
+        
+        // Assert
+        Assert.Equal(4, rankedTeams.Count);
+        Assert.Equal("Lions", rankedTeams[0].Team.Name);
+        Assert.Equal("Tigers", rankedTeams[1].Team.Name);  
+        Assert.Equal("Bears", rankedTeams[2].Team.Name);
+        Assert.Equal("Snakes", rankedTeams[3].Team.Name);
+    }
+    
+    [Fact]
+    public void GetRankedTeams_SortsMoreResultsByPointsDescThenNamesAsc_ReturnsSortedByPoints()
+    {
+        // Arrange
+        var league = new LeagueTable();
+        
+        // Act
+        league.AddGameResult("Lions 3, Snakes 1");
+        league.AddGameResult("Tigers 1, Lions 1");
+        league.AddGameResult("Bears 2, Snakes 0");
+        var rankedTeams = league.GetRankedTeams();
+        
+        // Assert
+        Assert.Equal(4, rankedTeams.Count);
+        Assert.Equal("Lions", rankedTeams[0].Team.Name); 
+        Assert.Equal(4, rankedTeams[0].Team.Points); 
+        Assert.Equal("Bears", rankedTeams[1].Team.Name); 
+        Assert.Equal(3, rankedTeams[1].Team.Points); 
+        Assert.Equal("Tigers", rankedTeams[2].Team.Name);
+        Assert.Equal(1, rankedTeams[2].Team.Points); 
+        Assert.Equal("Snakes", rankedTeams[3].Team.Name);
+        Assert.Equal(0, rankedTeams[3].Team.Points);
+    }
 }
