@@ -64,6 +64,3 @@ public class GameResultParser : IGameResultParser
         return score;
     }
 }
-
-
-
