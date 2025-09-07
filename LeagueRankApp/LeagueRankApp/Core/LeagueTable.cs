@@ -5,7 +5,7 @@ namespace LeagueRankApp.Core;
 
 public class LeagueTable : ILeagueTable
 {
-    private readonly Dictionary<string, Team> _teams = new();
+    private readonly Dictionary<string, Team> _teams = new(StringComparer.OrdinalIgnoreCase);
     private readonly GameResultParser _resultParser = new();
 
     public IReadOnlyDictionary<string, Team> Teams => _teams;
@@ -45,7 +45,7 @@ public class LeagueTable : ILeagueTable
         // Sort teams first DESC by points then ASC by name
         var sortedTeams = _teams.Values
             .OrderByDescending(t => t.Points)
-            .ThenBy(t => t.Name)
+            .ThenBy(t => t.Name, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
         // Assign ranks

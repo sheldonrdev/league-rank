@@ -69,6 +69,29 @@ public class LeagueTableTests
     }
     
     [Fact]
+    public void AddGameResult_CaseInsensitiveTeamNames_TreatsAsSameTeam()
+    {
+        // Arrange
+        var league = new LeagueTable();
+    
+        // Act
+        league.AddGameResult("Lions 3, Snakes 1");
+        league.AddGameResult("LIONS 2, SnAkeS 1");
+        var rankedTeams = league.GetRankedTeams();
+    
+        // Assert
+        Assert.Equal(2, rankedTeams.Count);
+    
+       // Lions = 6 points (2 wins)
+        var lions = rankedTeams.First(rt => rt.Team.Name.Equals("Lions", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(6, lions.Team.Points);
+    
+        // Snakes = 0 points (2 losses)  
+        var snakes = rankedTeams.First(rt => rt.Team.Name.Equals("Snakes", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(0, snakes.Team.Points);
+    }
+    
+    [Fact]
     public void GetRankedTeams_SortsMoreResultsByPointsDescThenNamesAsc_ReturnsSortedByPoints()
     {
         // Arrange
