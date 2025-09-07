@@ -39,6 +39,13 @@ public class LeagueTable : ILeagueTable
 
     public List<RankedTeam> GetRankedTeams()
     {
-        throw new NotImplementedException();
+        if (!_teams.Any())
+            return new List<RankedTeam>();
+
+        // Sort teams first DESC by points then ASC by name
+        var sortedTeams = _teams.Values
+            .OrderByDescending(t => t.Points)
+            .ThenBy(t => t.Name)
+            .ToList();
     }
 }
