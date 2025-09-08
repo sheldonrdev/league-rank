@@ -5,22 +5,21 @@ namespace LeagueRankApp.Tests;
 public class FileOutputWriterTests
 {
     [Fact]
-    public void WriteOutput_WithValidFilePath_WritesContentToFile()
+    public void WriteLines_WithValidFilePath_WritesLinesToFile()
     {
         // Arrange
         var tempFile = Path.GetTempFileName();
-        var expectedContent = @"1. Lions, 3 pts
-2. Tigers, 1 pt
-3. Bears, 0 pts";
+        var expectedLines = new[] { "1. Lions, 3 pts", "2. Tigers, 1 pt", "3. Bears, 0 pts" };
+        var expectedContent = string.Join(Environment.NewLine, expectedLines) + Environment.NewLine;
         
         try
         {
             // Act
-            FileOutputWriter.WriteOutput(expectedContent, tempFile);
+            FileOutputWriter.WriteLines(expectedLines, tempFile);
             
             // Assert
             Assert.True(File.Exists(tempFile));
-            var actualContent = File.ReadAllText(tempFile).TrimEnd();
+            var actualContent = File.ReadAllText(tempFile);
             Assert.Equal(expectedContent, actualContent);
         }
         finally
@@ -32,16 +31,16 @@ public class FileOutputWriterTests
     }
 
     [Fact]
-    public void WriteOutput_WithEmptyContent_CreatesEmptyFile()
+    public void WriteLines_WithEmptyLines_CreatesEmptyFile()
     {
         // Arrange
         var tempFile = Path.GetTempFileName();
-        var emptyContent = string.Empty;
+        var emptyLines = new string[0];
         
         try
         {
             // Act
-            FileOutputWriter.WriteOutput(emptyContent, tempFile);
+            FileOutputWriter.WriteLines(emptyLines, tempFile);
             
             // Assert
             Assert.True(File.Exists(tempFile));
@@ -57,12 +56,13 @@ public class FileOutputWriterTests
     }
 
     [Fact]
-    public void WriteOutput_OverwritesExistingFile()
+    public void WriteLines_OverwritesExistingFile()
     {
         // Arrange
         var tempFile = Path.GetTempFileName();
         var originalContent = "Original content";
-        var newContent = "New content";
+        var newLines = new[] { "New content" };
+        var expectedContent = "New content" + Environment.NewLine;
         
         try
         {
@@ -70,11 +70,11 @@ public class FileOutputWriterTests
             Assert.Equal(originalContent, File.ReadAllText(tempFile));
             
             // Act
-            FileOutputWriter.WriteOutput(newContent, tempFile);
+            FileOutputWriter.WriteLines(newLines, tempFile);
             
             // Assert
-            var actualContent = File.ReadAllText(tempFile).TrimEnd();
-            Assert.Equal(newContent, actualContent);
+            var actualContent = File.ReadAllText(tempFile);
+            Assert.Equal(expectedContent, actualContent);
             Assert.DoesNotContain(originalContent, actualContent);
         }
         finally
@@ -86,29 +86,29 @@ public class FileOutputWriterTests
     }
 
     [Fact]
-    public void WriteOutput_WithNullOutputFile_ThrowsArgumentException()
+    public void WriteLines_WithNullOutputFile_ThrowsArgumentException()
     {
         // Arrange
-        var content = "1. Lions, 3 pts";
+        var lines = new[] { "1. Lions, 3 pts" };
         string? nullOutputFile = null;
         
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(() => 
-            FileOutputWriter.WriteOutput(content, nullOutputFile));
+            FileOutputWriter.WriteLines(lines, nullOutputFile));
             
         Assert.Contains("Output file path cannot be null or empty", exception.Message);
     }
 
     [Fact]
-    public void WriteOutput_WithEmptyStringOutputFile_ThrowsArgumentException()
+    public void WriteLines_WithEmptyStringOutputFile_ThrowsArgumentException()
     {
         // Arrange
-        var content = "2. Tigers, 1 pt";
+        var lines = new[] { "2. Tigers, 1 pt" };
         var emptyOutputFile = string.Empty;
         
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(() => 
-            FileOutputWriter.WriteOutput(content, emptyOutputFile));
+            FileOutputWriter.WriteLines(lines, emptyOutputFile));
             
         Assert.Contains("Output file path cannot be null or empty", exception.Message);
     }

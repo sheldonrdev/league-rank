@@ -15,8 +15,8 @@ public class LeagueProcessor
         try
         {
             var inputLines = FileInputReader.ReadLines(inputFile);
-            var result = ProcessLeague(inputLines);
-            FileOutputWriter.WriteOutput(result, outputFile);
+            var resultLines = ProcessLeague(inputLines);
+            FileOutputWriter.WriteLines(resultLines, outputFile);
         }
         catch (Exception ex) when (!(ex is FormatException))
         {
@@ -26,11 +26,11 @@ public class LeagueProcessor
     }
     
     /// <summary>
-    /// Processes game results and returns formatted league table.
+    /// Processes game results and returns formatted league table lines.
     /// </summary>
     /// <param name="gameResultLines">List of game result strings</param>
-    /// <returns>Formatted league table string</returns>
-    public string ProcessLeague(IEnumerable<string> gameResultLines)
+    /// <returns>Enumerable of formatted league table lines</returns>
+    public IEnumerable<string> ProcessLeague(IEnumerable<string> gameResultLines)
     {
         var leagueTable = new LeagueTable();
         int lineNumber = 0;
@@ -54,6 +54,6 @@ public class LeagueProcessor
         }
 
         var rankedTeams = leagueTable.GetRankedTeams();
-        return rankedTeams.FormatTable();
+        return rankedTeams.FormatTableLines();
     }
 }

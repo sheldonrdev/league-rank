@@ -3,10 +3,10 @@ namespace LeagueRankApp.Core.Util;
 public static class FileInputReader
 {
     /// <summary>
-    /// Read lines from a file using streaming.
+    /// Read lines from a file using simple streaming to avoid loading entire file into memory.
     /// </summary>
     /// <param name="inputFile">Path to input file</param>
-    /// <returns>Enumerable of input lines streamed line-by-line from file</returns>
+    /// <returns>Enumerable of input lines that streams from file</returns>
     public static IEnumerable<string> ReadLines(string inputFile)
     {
         if (string.IsNullOrWhiteSpace(inputFile))
@@ -15,16 +15,6 @@ public static class FileInputReader
         if (!File.Exists(inputFile))
             throw new FileNotFoundException($"Input file not found: {inputFile}");
         
-        return StreamLines(inputFile);
-    }
-    
-    private static IEnumerable<string> StreamLines(string inputFile)
-    {
-        using var reader = new StreamReader(inputFile);
-        string? line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            yield return line;
-        }
+        return File.ReadLines(inputFile);
     }
 }

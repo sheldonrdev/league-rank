@@ -3,17 +3,15 @@ namespace LeagueRankApp.Core.Util;
 public static class FileOutputWriter
 {
     /// <summary>
-    /// Write content to a file.
+    /// Write lines to a file using simple streaming.
     /// </summary>
-    /// <param name="content">Content to write</param>
+    /// <param name="lines">Lines to write to file</param>
     /// <param name="outputFile">Path to output file</param>
-    public static void WriteOutput(string content, string outputFile)
+    public static void WriteLines(IEnumerable<string> lines, string outputFile)
     {
         if (string.IsNullOrWhiteSpace(outputFile))
             throw new ArgumentException("Output file path cannot be null or empty", nameof(outputFile));
 
-        File.WriteAllText(outputFile, content);
-        if (!string.IsNullOrEmpty(content))
-            File.AppendAllText(outputFile, Environment.NewLine);
+        File.WriteAllLines(outputFile, lines);
     }
 }

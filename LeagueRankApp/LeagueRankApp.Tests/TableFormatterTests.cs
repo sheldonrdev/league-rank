@@ -6,7 +6,7 @@ namespace LeagueRankApp.Tests;
 public class TableFormatterTests
 {
     [Fact]
-    public void FormatTable_SingleTeamWithMultiplePoints_FormatsCorrectlyWithPluralPts()
+    public void FormatTableLines_SingleTeamWithMultiplePoints_FormatsCorrectlyWithPluralPts()
     {
         // Arrange
         var team = new Team("Lions");
@@ -14,14 +14,15 @@ public class TableFormatterTests
         var rankedTeams = new List<RankedTeam> { new(team, 1) };
         
         // Act
-        var result = rankedTeams.FormatTable();
+        var result = rankedTeams.FormatTableLines().ToList();
         
         // Assert
-        Assert.Equal("1. Lions, 3 pts", result);
+        Assert.Single(result);
+        Assert.Equal("1. Lions, 3 pts", result[0]);
     }
 
     [Fact] 
-    public void FormatTable_SingleTeamWithOnePoint_FormatsCorrectlyWithSingularPt()
+    public void FormatTableLines_SingleTeamWithOnePoint_FormatsCorrectlyWithSingularPt()
     {
         // Arrange
         var team = new Team("Tigers");
@@ -29,9 +30,10 @@ public class TableFormatterTests
         var rankedTeams = new List<RankedTeam> { new(team, 1) };
         
         // Act
-        var result = rankedTeams.FormatTable();
+        var result = rankedTeams.FormatTableLines().ToList();
         
         // Assert
-        Assert.Equal("1. Tigers, 1 pt", result);
+        Assert.Single(result);
+        Assert.Equal("1. Tigers, 1 pt", result[0]);
     }
 }

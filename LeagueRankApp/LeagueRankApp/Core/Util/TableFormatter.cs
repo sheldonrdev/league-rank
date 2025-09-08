@@ -7,22 +7,16 @@ namespace LeagueRankApp.Core.Util;
 /// </summary>
 public static class TableFormatter
 {
-    public static string FormatTable(this IEnumerable<RankedTeam>? rankedTeams)
+    public static IEnumerable<string> FormatTableLines(this IEnumerable<RankedTeam>? rankedTeams)
     {
         if (rankedTeams == null)
-            return string.Empty;
+            yield break;
 
-        var teamsList = rankedTeams.ToList();
-        if (!teamsList.Any())
-            return string.Empty;
-
-        var lines = teamsList.Select(rankedTeam =>
+        foreach (var rankedTeam in rankedTeams)
         {
             var team = rankedTeam.Team;
             var points = team.Points == 1 ? "pt" : "pts";
-            return $"{rankedTeam.Rank}. {team.Name}, {team.Points} {points}";
-        });
-
-        return string.Join(Environment.NewLine, lines);
+            yield return $"{rankedTeam.Rank}. {team.Name}, {team.Points} {points}";
+        }
     }
 }
