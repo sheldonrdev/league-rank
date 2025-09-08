@@ -225,6 +225,22 @@ dotnet clean
 - **Defensive Programming**: Input validation and error handling
 - **Documentation**: Readme documentation with clear naming conventions and application limitations.
 
+## AI Assistance
+
+This project was developed without the assistance of an AI assistant (LLM, Agent or other) to transparently demonstrate my ability as a software developer.
+
+Whilst I have not used an AI assistant in this assessment, I do use them in my day-to-day activities for:
+- Proof reading documentation I write
+- Summarising documents and emails
+- Assisting with generating overviews from code
+- Generating acceptance tests from requirements
+- Unit Tests
+- Technical debt
+- Code review, etc.
+
+Having shared the above detail, it's imperative to note, all design decisions, requirements interpretation, and final code review remains under my control. 
+I strongly believe whilst AI may serve as a development accelerator I am still responsible for maintaining code quality and architectural integrity.
+
 ## Contributing
 
 This project is for demonstration purposes.
