@@ -14,8 +14,11 @@ public class LeagueProcessor
     {
         try
         {
+            // Step 1: Read input
             var inputLines = FileInputReader.ReadLines(inputFile);
+            // Step 2: Process input and generate table
             var resultLines = ProcessLeague(inputLines);
+            // Step 3: Write output
             FileOutputWriter.WriteLines(resultLines, outputFile);
         }
         catch (Exception ex) when (!(ex is FormatException))
